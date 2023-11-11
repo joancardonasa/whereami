@@ -4,10 +4,13 @@ extends Node
 
 @onready var host_button: Button = %HostButton
 @onready var refresh_button: Button  = %RefreshButton
+@onready var play_local_host: Button = %PlayLocalHost
+@onready var play_local_client: Button = %PlayLocalClient
 
 @onready var game_discovery: GameDiscovery = $GameDiscovery
 @onready var game_entries_container: VBoxContainer = %GameEntriesContainer
 @onready var error_label : Label = $CanvasLayer/MainMenu/ErrorLabel
+
 
 var game_name_entry = preload("res://src/UI/lobby_game_name_entry.tscn")
 
@@ -18,6 +21,9 @@ func _ready():
 
 	host_button.pressed.connect(func(): game_discovery.register_game(player_name_entry.text))
 	refresh_button.pressed.connect(_on_refresh_button_pressed)
+	play_local_host.pressed.connect(Networking.host)
+	play_local_client.pressed.connect(func(): Networking.join("localhost"))
+	Networking.full_game.connect(_on_Networking_full_game)
 
 	game_discovery.game_registered.connect(_on_game_discovery_game_registered)
 	game_discovery.games_refreshed.connect(_on_game_discovery_games_refreshed)
@@ -39,3 +45,6 @@ func _on_game_discovery_games_refreshed(games: Array[GameInfo]):
 		game_entries_container.add_child(game_entry)
 		game_entry.joined_game.connect(game_discovery.join_game)
 		game_entry.set_game_info(game)
+
+func _on_Networking_full_game():
+	get_tree().change_scene_to_file("res://src/main.tscn")

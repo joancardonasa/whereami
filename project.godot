@@ -15,6 +15,10 @@ run/main_scene="res://src/UI/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Networking="*res://src/network/Networking.tscn"
+
 [input]
 
 move_right={

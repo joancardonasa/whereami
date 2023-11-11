@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cq81181pknm0s"]
 
 [ext_resource type="Script" path="res://src/UI/main_menu.gd" id="1_p65x4"]
-[ext_resource type="Script" path="res://src/UI/game_discovery.gd" id="3_62qmb"]
+[ext_resource type="Script" path="res://src/network/game_discovery.gd" id="2_clryf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_481i4"]
 font_size = 32
@@ -78,7 +78,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Play Local Host"
 
-[node name="PlayLocalHost2" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+[node name="PlayLocalClient" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Play Local Client"
@@ -136,4 +136,4 @@ offset_right = 1148.0
 offset_bottom = 648.0
 
 [node name="GameDiscovery" type="Node" parent="."]
-script = ExtResource("3_62qmb")
+script = ExtResource("2_clryf")

@@ -1,13 +1,10 @@
 extends Node
 class_name GameDiscovery
 
-@export var PORT = 9999
-@export var MAX_CLIENTS = 2
 
 var firebase_auth_url
 var firestore_url
 var id_token
-var enet_peer = ENetMultiplayerPeer.new()
 var ip
 
 signal authenticated
@@ -24,9 +21,9 @@ func register_game(game_name: String):
 		emit_signal("error", "Failed to setup UPNP: No valid gateway found")
 		push_error("Failed to setup UPNP: No valid gateway found")
 		return
-	enet_peer.create_server(PORT, MAX_CLIENTS)
 	var game_info = GameInfo.new(game_name, ip)
 	_register_game_to_firestore(game_info)
+	Networking.host()
 
 func obtain_games():
 	if id_token == null:
@@ -35,6 +32,7 @@ func obtain_games():
 	_obtain_game_list()
 
 func join_game(game_info: GameInfo):
+	Networking.join(game_info.ip)
 	print("Joining game: ", game_info.name, " at ", game_info.ip)
 
 func _init():
@@ -129,7 +127,7 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 
 func _upnp_setup() -> int:
 	var thread = Thread.new()
-	thread.start(_upnp_setup_thread.bind(PORT))
+	thread.start(_upnp_setup_thread.bind(Networking.PORT))
 	var upnp = await thread.wait_to_finish()
 	if upnp == null:
 		return ERR_CONNECTION_ERROR
