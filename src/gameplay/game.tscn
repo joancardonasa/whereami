@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://pfbvh3k7h43a"]
+
+[ext_resource type="PackedScene" uid="uid://dcm5rpr5yu6bt" path="res://src/box.tscn" id="2_p1j13"]
+[ext_resource type="Script" path="res://src/gameplay/game.gd" id="3_w8y6w"]
+
+[node name="Game" type="Node"]
+script = ExtResource("3_w8y6w")
+
+[node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="ColorRect" parent="World"]
+offset_left = -34.0
+offset_top = -18.0
+offset_right = 1216.0
+offset_bottom = 708.0
+mouse_filter = 2
+color = Color(0.188235, 0.196078, 0.239216, 1)
+
+[node name="PlayerSpawnPositions" type="Node2D" parent="World"]
+
+[node name="Spawn1" type="Node2D" parent="World/PlayerSpawnPositions"]
+position = Vector2(256, 512)
+
+[node name="Spawn2" type="Node2D" parent="World/PlayerSpawnPositions"]
+position = Vector2(818, 527)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/player.tscn")
+spawn_path = NodePath("../World")
+
+[node name="Box" parent="." instance=ExtResource("2_p1j13")]
+position = Vector2(888, 368)

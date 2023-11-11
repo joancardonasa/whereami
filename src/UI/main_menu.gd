@@ -47,4 +47,4 @@ func _on_game_discovery_games_refreshed(games: Array[GameInfo]):
 		game_entry.set_game_info(game)
 
 func _on_Networking_full_game():
-	get_tree().change_scene_to_file("res://src/main.tscn")
+	get_tree().change_scene_to_file("res://src/gameplay/game.tscn")
