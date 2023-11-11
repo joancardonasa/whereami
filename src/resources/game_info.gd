@@ -10,8 +10,14 @@ func _init(game_name: String, game_ip: String):
 
 func to_doc() -> String:
     return JSON.stringify({
-        "name": self.name,
-        "ip": self.ip
+        "fields": {
+            "ip": {
+                "stringValue": self.ip
+            },
+            "name": {
+                "stringValue": self.name
+            },
+        }
     })
 
 static func from_doc(doc) -> GameInfo:

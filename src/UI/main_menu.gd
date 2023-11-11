@@ -7,6 +7,7 @@ extends Node
 
 @onready var game_discovery: GameDiscovery = $GameDiscovery
 @onready var game_entries_container: VBoxContainer = %GameEntriesContainer
+@onready var error_label : Label = $CanvasLayer/MainMenu/ErrorLabel
 
 var game_name_entry = preload("res://src/UI/lobby_game_name_entry.tscn")
 
@@ -15,11 +16,12 @@ func _ready():
 	host_button.disabled = true
 	refresh_button.disabled = true
 
-	host_button.pressed.connect(game_discovery.register_game)
+	host_button.pressed.connect(func(): game_discovery.register_game(player_name_entry.text))
 	refresh_button.pressed.connect(_on_refresh_button_pressed)
 
 	game_discovery.game_registered.connect(_on_game_discovery_game_registered)
 	game_discovery.games_refreshed.connect(_on_game_discovery_games_refreshed)
+	game_discovery.error.connect(func(error: String): error_label.text = error)
 
 func _on_player_name_entry_text_changed(new_text: String):
 	host_button.disabled = !new_text or new_text == ""
