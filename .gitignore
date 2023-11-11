@@ -1,3 +1,8 @@
+
+secrets.cfg
 # Godot 4+ specific ignores
 .godot/
-secrets.cfg
+
+# vscode
+.vscode/*
+.vs/*
