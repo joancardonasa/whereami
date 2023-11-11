@@ -7,3 +7,15 @@ class_name GameInfo
 func _init(game_name: String, game_ip: String):
     self.name = game_name
     self.ip = game_ip
+
+func to_doc() -> String:
+    return JSON.stringify({
+        "name": self.name,
+        "ip": self.ip
+    })
+
+static func from_doc(doc) -> GameInfo:
+    return GameInfo.new(
+        doc["fields"]["name"]["stringValue"],
+		doc["fields"]["ip"]["stringValue"]
+    )

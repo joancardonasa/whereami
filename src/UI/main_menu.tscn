@@ -96,12 +96,12 @@ alignment = 1
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Host"
+text = "Host Game"
 
 [node name="RefreshButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Join"
+text = "Obtain Game List"
 
 [node name="Line3" type="Panel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2

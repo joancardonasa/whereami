@@ -9,12 +9,12 @@ var game_info: GameInfo
 signal joined_game(game_info: GameInfo)
 
 func _ready():
-    join_button.pressed.connect(_on_join_button_pressed)
+	join_button.pressed.connect(_on_join_button_pressed)
 
-func _set_game_info(game_info: GameInfo):
-    self.game_info = game_info
-    game_name_label.text = game_info.name
+func set_game_info(info: GameInfo):
+	game_info = info
+	game_name_label.text = info.name
 
 func _on_join_button_pressed():
-    if !game_info: return
-    joined_game.emit(game_info)
+	if !game_info: return
+	joined_game.emit(game_info)
