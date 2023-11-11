@@ -16,9 +16,12 @@ func set_label(label_text: String):
 	label_name.text = label_text
 
 func set_visibility(visiblity: bool):
-	shoot_raycast.visible = visiblity
-	label_name.visible = visiblity
-	sprite.visible = visiblity
+	if is_multiplayer_authority():
+		sprite.modulate.a = 1. if visiblity else 0.5
+	else:
+		shoot_raycast.visible = visiblity
+		label_name.visible = visiblity
+		sprite.visible = visiblity
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
