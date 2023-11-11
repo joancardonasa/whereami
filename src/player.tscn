@@ -24,6 +24,8 @@ scale_max = 0.1
 radius = 52.8867
 
 [node name="Player" type="CharacterBody2D"]
+top_level = true
+scale = Vector2(0.55, 0.55)
 script = ExtResource("1_6ricb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -64,10 +66,10 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_4aqot")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -61.0
-offset_top = -93.0
-offset_right = 60.0
-offset_bottom = -67.0
+offset_left = -59.0
+offset_top = -91.0
+offset_right = 62.0
+offset_bottom = -65.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "PlayerName"

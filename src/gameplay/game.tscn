@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://pfbvh3k7h43a"]
+[gd_scene load_steps=4 format=3 uid="uid://pfbvh3k7h43a"]
 
 [ext_resource type="PackedScene" uid="uid://dcm5rpr5yu6bt" path="res://src/box.tscn" id="2_p1j13"]
+[ext_resource type="PackedScene" uid="uid://1h8akbkrp040" path="res://src/gameplay/entities/grass.tscn" id="3_swbvg"]
 [ext_resource type="Script" path="res://src/gameplay/game.gd" id="3_w8y6w"]
 
 [node name="Game" type="Node"]
@@ -15,7 +16,28 @@ offset_top = -18.0
 offset_right = 1216.0
 offset_bottom = 708.0
 mouse_filter = 2
-color = Color(0.188235, 0.196078, 0.239216, 1)
+color = Color(0.0470588, 0.0862745, 0.0941176, 1)
+
+[node name="Map" type="Node2D" parent="World"]
+position = Vector2(374, 426)
+scale = Vector2(10, 10)
+
+[node name="Grass" parent="World/Map" instance=ExtResource("3_swbvg")]
+
+[node name="Grass2" parent="World/Map" instance=ExtResource("3_swbvg")]
+position = Vector2(-5.4, -8.8)
+
+[node name="Grass3" parent="World/Map" instance=ExtResource("3_swbvg")]
+position = Vector2(-7, -17.7)
+
+[node name="Grass4" parent="World/Map" instance=ExtResource("3_swbvg")]
+position = Vector2(22, -22)
+
+[node name="Grass5" parent="World/Map" instance=ExtResource("3_swbvg")]
+position = Vector2(35.5, 6.5)
+
+[node name="Grass6" parent="World/Map" instance=ExtResource("3_swbvg")]
+position = Vector2(60.8, -24.9)
 
 [node name="PlayerSpawnPositions" type="Node2D" parent="World"]
 
