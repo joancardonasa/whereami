@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw8nha3jo3qyq"]
+
+[ext_resource type="Script" path="res://src/UI/lobby_game_name_entry.gd" id="1_d6y0h"]
+
+[node name="LobbyGameNameEntry" type="HBoxContainer"]
+offset_right = 592.0
+offset_bottom = 40.0
+script = ExtResource("1_d6y0h")
+
+[node name="GameNameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Game Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Join"

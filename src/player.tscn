@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://ljgyq3305r6y"]
+
+[ext_resource type="Script" path="res://src/player.gd" id="1_6ricb"]
+[ext_resource type="Texture2D" uid="uid://dsmvniiw460i5" path="res://icon.svg" id="2_kd7gr"]
+[ext_resource type="AudioStream" uid="uid://di2ikxhh8u2n7" path="res://assets/sfx/GUNSupr_Silenced Pistol Fire Short_01.wav" id="3_xuc1l"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mqb1x"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqpp7"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.05
+scale_max = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4aqot"]
+radius = 52.8867
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6ricb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kd7gr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_mqb1x")
+
+[node name="ShootRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(3000, 0)
+collision_mask = 12
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="ShootTimer" type="Timer" parent="ShootRaycast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ShootParticles" type="GPUParticles2D" parent="ShootRaycast"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_sqpp7")
+texture = ExtResource("2_kd7gr")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="ShootSFX" type="AudioStreamPlayer2D" parent="ShootRaycast"]
+stream = ExtResource("3_xuc1l")
+volume_db = -5.0
+
+[node name="PlayerHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+shape = SubResource("CircleShape2D_4aqot")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://pfbvh3k7h43a"]
+
+[ext_resource type="Script" path="res://src/main.gd" id="1_0kfhc"]
+[ext_resource type="PackedScene" uid="uid://dcm5rpr5yu6bt" path="res://src/box.tscn" id="2_p1j13"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0kfhc")
+
+[node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="ColorRect" parent="World"]
+offset_left = -34.0
+offset_top = -18.0
+offset_right = 1216.0
+offset_bottom = 708.0
+mouse_filter = 2
+color = Color(0.352941, 0.67451, 0.556863, 1)
+
+[node name="PlayerSpawnPositions" type="Node2D" parent="World"]
+
+[node name="Spawn1" type="Node2D" parent="World/PlayerSpawnPositions"]
+position = Vector2(256, 512)
+
+[node name="Spawn2" type="Node2D" parent="World/PlayerSpawnPositions"]
+position = Vector2(818, 527)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 163.0
+offset_top = 112.0
+offset_right = -163.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Enter adress to join"
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/player.tscn")
+spawn_path = NodePath("../World")
+
+[node name="Box" parent="." instance=ExtResource("2_p1j13")]
+position = Vector2(888, 368)

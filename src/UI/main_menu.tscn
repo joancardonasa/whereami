@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq81181pknm0s"]
+
+[ext_resource type="Script" path="res://src/UI/main_menu.gd" id="1_p65x4"]
+[ext_resource type="Script" path="res://src/UI/game_discovery.gd" id="3_62qmb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_481i4"]
+font_size = 32
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_f6h80"]
+color = Color(1, 1, 1, 1)
+thickness = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ns8rl"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_076ig"]
+color = Color(1, 1, 1, 1)
+thickness = 4
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_p65x4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -292.0
+offset_right = 256.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Name"
+label_settings = SubResource("LabelSettings_481i4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2" type="Panel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_f6h80")
+
+[node name="LocalButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Local"
+
+[node name="PlayLocalHost" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play Local Host"
+
+[node name="PlayLocalHost2" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play Local Client"
+
+[node name="Line" type="Panel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_f6h80")
+
+[node name="PlayerNameEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Enter Player Name"
+alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Host"
+
+[node name="RefreshButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join"
+
+[node name="Line3" type="Panel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_f6h80")
+
+[node name="Label2" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game List"
+label_settings = SubResource("LabelSettings_ns8rl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line4" type="Panel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_076ig")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(512, 200)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="GameEntriesContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameDiscovery" type="Node" parent="."]
+script = ExtResource("3_62qmb")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcm5rpr5yu6bt"]
+
+[ext_resource type="Texture2D" uid="uid://dsmvniiw460i5" path="res://icon.svg" id="1_3cslf"]
+[ext_resource type="Script" path="res://src/box.gd" id="1_q83s5"]
+[ext_resource type="PackedScene" uid="uid://dy7okieyn1bxy" path="res://src/breakable.tscn" id="3_ibsjr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvjvm"]
+size = Vector2(128, 128)
+
+[node name="Box" type="StaticBody2D"]
+script = ExtResource("1_q83s5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.654902, 0.309804, 0.152941, 1)
+texture = ExtResource("1_3cslf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kvjvm")
+
+[node name="Breakable" parent="." instance=ExtResource("3_ibsjr")]
+collision_layer = 8
+
+[editable path="Breakable"]

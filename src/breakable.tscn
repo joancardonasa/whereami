@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy7okieyn1bxy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvjvm"]
+size = Vector2(128, 128)
+
+[node name="Breakable" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kvjvm")
