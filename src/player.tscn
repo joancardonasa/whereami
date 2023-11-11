@@ -58,7 +58,7 @@ explosiveness = 1.0
 stream = ExtResource("3_xuc1l")
 volume_db = -5.0
 
-[node name="PlayerHurtbox" type="Area2D" parent="."]
+[node name="PlayerHurtbox" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 4
 collision_mask = 0
 

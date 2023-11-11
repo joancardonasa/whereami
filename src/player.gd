@@ -3,6 +3,7 @@ class_name Player
 
 @export var MOVEMENT_SPEED: float = 200
 @onready var camera := $Camera2D
+@onready var sprite := $Sprite2D
 @onready var shoot_raycast := $ShootRaycast
 @onready var shoot_timer := $ShootRaycast/ShootTimer
 @onready var label_name := $Label
@@ -13,6 +14,11 @@ class_name Player
 @rpc("call_local", "any_peer")
 func set_label(label_text: String):
 	label_name.text = label_text
+
+func set_visibility(visiblity: bool):
+	shoot_raycast.visible = visiblity
+	label_name.visible = visiblity
+	sprite.visible = visiblity
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -46,4 +52,5 @@ func _physics_process(_delta):
 func _play_shoot_effects():
 	shoot_particles.emitting = true
 	shoot_sfx.play()
+
 
