@@ -47,7 +47,7 @@ func _unhandled_input(event):
 			var hit = shoot_raycast.get_collider()
 			if hit.is_in_group("Player"):
 				var hitplayer = hit.get_parent()
-				hitplayer.rpc_id(hitplayer.get_multiplayer_authority(), "stun", self.position)
+				hitplayer.rpc("stun", self.position)
 
 func _process(_delta):
 	if not is_multiplayer_authority(): return
@@ -69,7 +69,7 @@ func _play_shoot_effects():
 	shoot_particles.emitting = true
 	shoot_sfx.play()
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func stun(hit_pos: Vector2):
 	push_force = (global_position - hit_pos).normalized() * HIT_FORCE
 	player_hurtbox.monitoring = false
